@@ -31,6 +31,7 @@ public class WebPageSourceCodeService {
 
     private WebDriver createWebDriver() {
         ChromeOptions options = new ChromeOptions();
+        options.setBinary("/usr/bin/chromedriver");
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--headless");
