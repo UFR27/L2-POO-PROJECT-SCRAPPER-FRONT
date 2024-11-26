@@ -10,6 +10,7 @@ import jakarta.transaction.Transactional;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.Base64;
 import java.util.List;
@@ -41,7 +42,7 @@ public class ProjetDAO {
     public void registerProject(AssignmentForm assignmentForm) throws URISyntaxException, IOException {
         Projet projet = new Projet();
         projet.setAddressAssignment(assignmentForm.assignementURL());
-        String realURL = new String(Base64.getDecoder().decode(assignmentForm.assignementURL().split("/url/")[1]));
+        String realURL = new String(Base64.getUrlDecoder().decode(assignmentForm.assignementURL().split("/url/")[1]), StandardCharsets.UTF_8);
         projet.setRealAssignment(realURL);
         projet.setGroups(assignmentForm.groups());
         projet.setNames(assignmentForm.names());

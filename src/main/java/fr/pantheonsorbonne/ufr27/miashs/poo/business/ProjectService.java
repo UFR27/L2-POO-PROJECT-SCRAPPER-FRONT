@@ -5,6 +5,7 @@ import fr.pantheonsorbonne.ufr27.miashs.poo.entities.Projet;
 import fr.pantheonsorbonne.ufr27.miashs.poo.model.AssignmentForm;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 
 import java.io.IOException;
 import java.net.URI;
@@ -31,6 +32,7 @@ public class ProjectService {
 
     }
 
+    @Transactional
     public void bookProject(AssignmentForm assignmentForm) throws URISyntaxException, IOException {
         projetDAO.registerProject(assignmentForm);
     }

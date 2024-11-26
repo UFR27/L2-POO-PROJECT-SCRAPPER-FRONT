@@ -62,7 +62,7 @@ public class WebPageSourceCodeService {
             driver.get(url.toString());
 
 
-            return driver.getPageSource();
+            return prettyPrintService.prettyHTML(driver.getPageSource());
         } finally {
             driver.quit();
         }
