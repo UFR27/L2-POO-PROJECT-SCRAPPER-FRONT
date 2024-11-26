@@ -14,6 +14,7 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 @Path("/url")
@@ -57,7 +58,9 @@ public class URLResource {
         try {
 
 
-            var responseBuilder = Response.seeOther(new URI(serverURI + "url/" + Base64.getUrlEncoder().encodeToString(url.getBytes()).replace("/","%2f")));
+
+
+            var responseBuilder = Response.seeOther(new URI(serverURI + "url/" + Base64.getUrlEncoder().encodeToString(url.getBytes(StandardCharsets.UTF_8))));
 
             return responseBuilder.build();
         } catch (URISyntaxException e) {

@@ -14,7 +14,7 @@ import java.util.List;
 
 @Path("/")
 @RegisterRestClient(configKey = "maven-project-factory")
-public interface ProjectFactoryResource {
+public interface ProjectFactoryResource extends AutoCloseable{
     @Path("{project-template}")
     @Consumes(MediaType.APPLICATION_JSON)
     @POST
