@@ -45,7 +45,7 @@ public class HomeResource {
 
     @POST
     @Consumes({MediaType.APPLICATION_JSON})
-    @Produces(MediaType.APPLICATION_OCTET_STREAM)
+    @Produces("application/zip")
 
     public Response processDynamicForm(AssignmentForm assignmentForm) throws IOException, URISyntaxException {
 
@@ -54,8 +54,8 @@ public class HomeResource {
 
 
         return Response
-                .ok(is, MediaType.APPLICATION_OCTET_STREAM) // InputStream and content type
-                .header("Content-Disposition", "attachment; filename=\"projetL2POO.zip\"") // Proper filename header
+                .ok(is, "application/zip") // InputStream and content type
+                .header("Content-Disposition", "attachment;filename=\"projetL2POO.zip\"") // Proper filename header
                 .build();
 
     }

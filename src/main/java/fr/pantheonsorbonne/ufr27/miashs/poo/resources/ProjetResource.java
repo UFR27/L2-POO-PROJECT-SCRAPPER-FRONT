@@ -8,6 +8,7 @@ import io.quarkus.qute.Template;
 import io.quarkus.qute.TemplateInstance;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.HttpHeaders;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
@@ -31,16 +32,18 @@ public class ProjetResource {
 
     @Path("/{projectID}")
     @GET
-    @Produces(MediaType.APPLICATION_OCTET_STREAM)
+    @Produces("application/zip")
     public Response getProject(@PathParam("projectID") UUID projectID) {
         try {
             AssignmentForm assignmentForm = dao.getAssignementFormByProjectId(projectID);
             var is = skeletonDownloadService.getProjectSkeleton(assignmentForm);
 
+
+
+
                 return Response
-                        .ok(is, MediaType.APPLICATION_OCTET_STREAM)
-                        .type("application/zip")
-                        .header("Content-Disposition", "attachment; filename=projetL2POO.zip")
+                        .ok(is)
+                        .header("Content-Disposition", "attachment; filename=\"projetL2POO.zip\"")
                         .build();
 
         } catch (Throwable e) {
